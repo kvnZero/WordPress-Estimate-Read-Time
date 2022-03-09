@@ -5,27 +5,27 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Add setting page
  */
 add_action( 'admin_menu', function() {
-	$pagename = __( '[AB] Settings');
+	$pagename = __( '[AB] Setting');
 	add_options_page(
 		$pagename,
 		$pagename,
 		'manage_options',
-		AB_Read_Time_Menu::ab_read_time_setting,
+		AB_Read_Time_Menu::MENU_SLUG,
 		['AB_Read_Time_Menu', 'setting_page']
 	);
 });
 
 add_action( 'admin_init', function() {
-	register_setting( MENU_SLUG::MENU_SLUG, MENU_SLUG::MENU_SLUG );
+	register_setting( AB_Read_Time_Menu::MENU_SLUG, AB_Read_Time_Menu::MENU_SLUG );
 
 	add_settings_section(
 		'ab_setting_section',
 		__( 'Basic settings' ),
 		'',
-		MENU_SLUG::MENU_SLUG
+		AB_Read_Time_Menu::MENU_SLUG
 	);
 
-    foreach ( AB_Read_Time_Menu::setting_fileds as $id => $data ) {
+    foreach ( AB_Read_Time_Menu::setting_fileds() as $id => $data ) {
 		$args = $data['args'];
 		$args['id'] = $id;
 
@@ -45,7 +45,7 @@ class AB_Read_Time_Menu {
 
     const MENU_SLUG = 'ab_read_time_setting';
 
-    static $settings = null;
+    protected static $settings = null;
 
     /**
      * Setting
@@ -120,21 +120,21 @@ class AB_Read_Time_Menu {
 		}
     }
 
-    private static function get_setting_value($key = '', $default = null)
+    public static function get_setting_value($key = '', $default = null)
     {
-        if (self::$setting === null) {
+        if (self::$settings === null) {
             self::$settings = get_option( AB_Read_Time_Menu::MENU_SLUG ) ?: [];
         }
-		$default = [
+		$defaultValue = [
 			'sup_chinese' => 1,
 			'rate' => 400,
 			'short_code' => "ab_post_read_time",
 			'show_text_template' => __("Read {{time}} about")
 		];
         if ($key == '') {
-            return array_merge($default, self::$settings);
+            return array_merge($defaultValue, self::$settings);
         }
-        return array_merge($default, self::$settings)[$key] ?? $default;
+        return array_merge($defaultValue, self::$settings)[$key] ?? $default;
     }
 
 	private static function field_input( $args ) {

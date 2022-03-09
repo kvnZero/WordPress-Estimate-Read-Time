@@ -39,5 +39,6 @@ function ab_post_read_time_func($attrs) {
 	} else {
 		return '';
 	}
-} 
-add_shortcode(AB_Read_Time_Menu::get_setting_value('show_code'), 'ab_post_read_time_func'); 
+}
+
+add_shortcode(AB_Read_Time_Menu::get_setting_value('short_code'), 'ab_post_read_time_func');
