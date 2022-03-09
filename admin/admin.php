@@ -72,6 +72,12 @@ class AB_Read_Time_Menu {
                     'desc' => '', 
                 ]
             ],
+			'rate' => [
+                'title' => __( 'read rate' ),
+                'args' => [
+                    'desc' => '',
+                ]
+            ],
             'short_code' => [
                 'title' => __( 'short code' ),
                 'args' => [
@@ -114,15 +120,21 @@ class AB_Read_Time_Menu {
 		}
     }
 
-    private static function get_setting_value($key = '')
+    private static function get_setting_value($key = '', $default = null)
     {
         if (self::$setting === null) {
             self::$settings = get_option( AB_Read_Time_Menu::MENU_SLUG ) ?: [];
         }
+		$default = [
+			'sup_chinese' => 1,
+			'rate' => 400,
+			'short_code' => "ab_post_read_time",
+			'show_text_template' => __("Read {{time}} about")
+		];
         if ($key == '') {
-            return self::$settings;
+            return array_merge($default, self::$settings);
         }
-        return self::$settings[$key] ?? null;
+        return array_merge($default, self::$settings)[$key] ?? $default;
     }
 
 	private static function field_input( $args ) {

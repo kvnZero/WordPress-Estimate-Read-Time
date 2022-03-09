@@ -9,7 +9,7 @@ add_filter( 'wp_insert_post_data', function ($data, $attr) {
 	$count = preg_match_all('/[\x{4e00}-\x{9fa5}]/u', $postContent, $match); //只获取中文
 	$min = 0;
 	if ($count !== false) {
-		$min = round($count / 400, 2); //可调整到合适的每分钟频
+		$min = round($count / AB_Read_Time_Menu::get_setting_value('rate', 400), 2); //可调整到合适的每分钟频
 	}
 	update_post_meta($attr['ID'], 'ab_post_read_time_text', sprintf('%s min', $min)); //时间文本
 
@@ -25,7 +25,7 @@ if (wp_get_theme()->get('Name') == 'Astra') { // 如果使用astra主题，你�
 	add_filter( 'astra_meta_case_ab_post_read_time_text',function($output){
 		$text = get_post_meta( get_the_ID(), 'ab_post_read_time_text', true );
 		if ($text) {
-			$output .= ' / <span style="color: black;">本篇阅读需要: '.$text.'</span>';
+			$output .= ' / <span style="color: black;">'.str_replace("{{time}}", $text, AB_Read_Time_Menu::get_setting_value('show_text_template')).'</span>';
 		}
 		return $output;
 	});
@@ -40,4 +40,4 @@ function ab_post_read_time_func($attrs) {
 		return '';
 	}
 } 
-add_shortcode('ab_post_read_time', 'ab_post_read_time_func'); 
+add_shortcode(AB_Read_Time_Menu::get_setting_value('show_code'), 'ab_post_read_time_func'); 
