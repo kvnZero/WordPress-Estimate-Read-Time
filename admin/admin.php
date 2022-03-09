@@ -65,7 +65,7 @@ class AB_Read_Time_Menu {
     {
         return [
             'sup_chinese' => [
-                'title' => __( 'support Chinese'),
+                'title' => __( 'Support Chinese'),
                 'args' => [
                     'type' => 'checkbox',
                     'label' => '',
@@ -73,13 +73,13 @@ class AB_Read_Time_Menu {
                 ]
             ],
 			'rate' => [
-                'title' => __( 'read rate' ),
+                'title' => __( 'Read rate' ),
                 'args' => [
                     'desc' => '',
                 ]
             ],
             'short_code' => [
-                'title' => __( 'short code' ),
+                'title' => __( 'Short code' ),
                 'args' => [
                     'desc' => '',
                 ]
@@ -126,7 +126,7 @@ class AB_Read_Time_Menu {
             self::$settings = get_option( AB_Read_Time_Menu::MENU_SLUG ) ?: [];
         }
 		$defaultValue = [
-			'sup_chinese' => 1,
+			'sup_chinese' => 'on',
 			'rate' => 400,
 			'short_code' => "ab_post_read_time",
 			'show_text_template' => __("Read {{time}} about")
