@@ -1,45 +1,46 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/**
- * Add setting page
- */
-add_action( 'admin_menu', function() {
-	$pagename = __( '[AB] Setting');
-	add_options_page(
-		$pagename,
-		$pagename,
-		'manage_options',
-		AB_Read_Time_Menu::MENU_SLUG,
-		['AB_Read_Time_Menu', 'setting_page']
-	);
-});
-
-add_action( 'admin_init', function() {
-	register_setting( AB_Read_Time_Menu::MENU_SLUG, AB_Read_Time_Menu::MENU_SLUG );
-
-	add_settings_section(
-		'ab_setting_section',
-		__( 'Basic settings' ),
-		'',
-		AB_Read_Time_Menu::MENU_SLUG
-	);
-
-    foreach ( AB_Read_Time_Menu::setting_fileds() as $id => $data ) {
-		$args = $data['args'];
-		$args['id'] = $id;
-
-		add_settings_field(
-			$id,
-			$data['title'],
-			['AB_Read_Time_Menu', 'settings_field_cb'],
+if (is_admin()) {
+	/**
+	 * Add setting page
+	 */
+	add_action( 'admin_menu', function() {
+		$pagename = __( '[AB] Settings');
+		add_options_page(
+			$pagename,
+			$pagename,
+			'manage_options',
 			AB_Read_Time_Menu::MENU_SLUG,
-			'ab_setting_section',
-			$args
+			['AB_Read_Time_Menu', 'setting_page']
 		);
-	}
-});
+	});
 
+	add_action( 'admin_init', function() {
+		register_setting( AB_Read_Time_Menu::MENU_SLUG, AB_Read_Time_Menu::MENU_SLUG );
+
+		add_settings_section(
+			'ab_setting_section',
+			__( 'Basic settings' ),
+			'',
+			AB_Read_Time_Menu::MENU_SLUG
+		);
+
+		foreach ( AB_Read_Time_Menu::setting_fileds() as $id => $data ) {
+			$args = $data['args'];
+			$args['id'] = $id;
+
+			add_settings_field(
+				$id,
+				$data['title'],
+				['AB_Read_Time_Menu', 'settings_field_cb'],
+				AB_Read_Time_Menu::MENU_SLUG,
+				'ab_setting_section',
+				$args
+			);
+		}
+	});
+}
 
 class AB_Read_Time_Menu {
 
