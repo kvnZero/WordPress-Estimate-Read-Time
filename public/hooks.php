@@ -14,11 +14,10 @@ add_filter( 'wp_insert_post_data', function ($data, $attr) {
 	$enCount = preg_match_all('/[a-zA-Z]+/g', $postContent, $match); //英文
 
 	$count = $enCount;
-	if (AB_Read_Time_Menu::get_setting_value('sup_chinese', false)) {
+	if (AB_Read_Time_Menu::get_setting_value('sup_chinese', 'off') == 'on') {
 		$chCount = preg_match_all('/[\x{4e00}-\x{9fa5}]|[a-z]+/u', $postContent, $match); //中文
 		$count += $enCount;
 	}
-	$count = $enCount + $chCount;
 
 	$min = 0;
 	if ($count !== false) {
