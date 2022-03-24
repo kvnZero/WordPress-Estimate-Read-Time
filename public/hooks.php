@@ -28,7 +28,7 @@ add_filter( 'wp_insert_post_data', function ($data, $attr) {
 	return $data;
 }, 10, 2);
 
-if (wp_get_theme()->get('Name') == 'Astra') { // 如果使用astra主题，你可以直接直接使用以下代码显示在文章标题下方较合适的地方。
+if (wp_get_theme()->get('Name') == 'Astra' && AB_Read_Time_Menu::get_setting_value('astra_autoload', 'off') == 'on') { // 如果使用astra主题，你可以直接直接使用以下代码显示在文章标题下方较合适的地方。
 	add_filter( 'astra_get_option_blog-single-meta',function($value){
 		$value[] = 'ab_post_read_time_text';
 		return $value;
@@ -43,13 +43,15 @@ if (wp_get_theme()->get('Name') == 'Astra') { // 如果使用astra主题，你�
 	});
 }
 
-// 如果需要其他地方使用，可以使用WordPress短代码的方式获取阅读时间文本
-function ab_post_read_time_func($attrs) { 
-	$post_id = $attrs['id'] ?? get_the_ID();
-	if ($post_id) {
-		return get_post_meta($post_id, 'ab_post_read_time_text', true);
-	} else {
-		return '';
+if (AB_Read_Time_Menu::get_setting_value('use_shortcode', 'off') == 'on') {
+	// 如果需要其他地方使用，可以使用WordPress短代码的方式获取阅读时间文本
+	function ab_post_read_time_func($attrs) { 
+		$post_id = $attrs['id'] ?? get_the_ID();
+		if ($post_id) {
+			return get_post_meta($post_id, 'ab_post_read_time_text', true);
+		} else {
+			return '';
+		}
 	}
 }
 

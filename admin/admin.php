@@ -64,7 +64,7 @@ class AB_Read_Time_Menu {
 
     public static function setting_fileds()
     {
-        return [
+        $options = [
             'sup_chinese' => [
                 'title' => __( 'Support Chinese'),
                 'args' => [
@@ -73,14 +73,30 @@ class AB_Read_Time_Menu {
                     'desc' => '', 
                 ]
             ],
-			'rate' => [
-                'title' => __( 'Read rate' ),
+			'use_shortcode' => [
+                'title' => __( 'Use short code'),
+                'args' => [
+                    'type' => 'checkbox',
+                    'label' => '',
+                    'desc' => '', 
+                ]
+            ],
+			'astra_autoload' => [
+                'title' => __( 'Astra them auto load'),
+                'args' => [
+                    'type' => 'checkbox',
+                    'label' => '',
+                    'desc' => '', 
+                ]
+			],
+            'short_code' => [
+                'title' => __( 'Short code' ),
                 'args' => [
                     'desc' => '',
                 ]
             ],
-            'short_code' => [
-                'title' => __( 'Short code' ),
+			'rate' => [
+                'title' => __( 'Read rate' ),
                 'args' => [
                     'desc' => '',
                 ]
@@ -94,6 +110,11 @@ class AB_Read_Time_Menu {
                 ]
             ],
         ];
+		if (wp_get_theme()->get('Name') !== 'Astra') {
+			unset($options['astra_autoload']);
+			unset($options['show_text_template']);
+		}
+		return $options;
     }
 
     public static function settings_field_cb( $args = [] )
@@ -128,6 +149,8 @@ class AB_Read_Time_Menu {
         }
 		$defaultValue = [
 			'sup_chinese' => 'on',
+			'use_shortcode' => 'on',
+			'astra_autoload' => 'on',
 			'rate' => 400,
 			'short_code' => "ab_post_read_time",
 			'show_text_template' => __("Read {{time}} about")
