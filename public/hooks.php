@@ -11,12 +11,12 @@ add_filter( 'wp_insert_post_data', function ($data, $attr) {
 	$postContent = preg_replace('/<\/?[a-z_-]+.*?>/is', '', $postContent); //删除元素标签
 	$postContent = preg_replace('/<!-- \/?wp.*>/', '', $postContent); //删除WP标签
 
-	$enCount = preg_match_all('/[a-zA-Z]+/g', $postContent, $match); //英文
+	$enCount = preg_match_all('/[a-zA-Z]+/', $postContent, $match); //英文
 
 	$count = $enCount;
 	if (AB_Read_Time_Menu::get_setting_value('sup_chinese', 'off') == 'on') {
 		$chCount = preg_match_all('/[\x{4e00}-\x{9fa5}]|[a-z]+/u', $postContent, $match); //中文
-		$count += $enCount;
+		$count += $chCount;
 	}
 
 	$min = 0;
