@@ -6,10 +6,22 @@ add_filter( 'wp_insert_post_data', function ($data, $attr) {
 	}
 
 	$postContent = $attr['post_content'];
-	$count = preg_match_all('/[\x{4e00}-\x{9fa5}]/u', $postContent, $match); //只获取中文
+
+	$postContent = preg_replace('/(<code*>.+<\/code>)/', '', $postContent); //过滤代码内容
+	$postContent = preg_replace('/<[/a-z_-]+.*?>/', '', $postContent); //删除元素标签
+
+	$enCount = preg_match_all('/[a-zA-Z]+/g', $postContent, $match); //英文
+
+	$count = $enCount;
+	if (AB_Read_Time_Menu::get_setting_value('sup_chinese', false)) {
+		$chCount = preg_match_all('/[\x{4e00}-\x{9fa5}]|[a-z]+/u', $postContent, $match); //中文
+		$count += $enCount;
+	}
+	$count = $enCount + $chCount;
+
 	$min = 0;
 	if ($count !== false) {
-		$min = round($count / AB_Read_Time_Menu::get_setting_value('rate', 400), 2); //可调整到合适的每分钟频
+		$min = round($count / AB_Read_Time_Menu::get_setting_value('rate', AB_Read_Time_Menu::get_setting_value('rate', 400)), 2); //可调整到合适的每分钟频
 	}
 	update_post_meta($attr['ID'], 'ab_post_read_time_text', sprintf('%s min', $min)); //时间文本
 
