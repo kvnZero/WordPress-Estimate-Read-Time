@@ -7,8 +7,9 @@ add_filter( 'wp_insert_post_data', function ($data, $attr) {
 
 	$postContent = $attr['post_content'];
 
-	$postContent = preg_replace('/(<code*>.+<\/code>)/', '', $postContent); //过滤代码内容
-	$postContent = preg_replace('/<[/a-z_-]+.*?>/', '', $postContent); //删除元素标签
+	$postContent = preg_replace('/(<code*>.*?<\/code>)/is', '', $postContent); //过滤代码内容
+	$postContent = preg_replace('/<\/?[a-z_-]+.*?>/is', '', $postContent); //删除元素标签
+	$postContent = preg_replace('/<!-- \/?wp.*>/', '', $postContent); //删除WP标签
 
 	$enCount = preg_match_all('/[a-zA-Z]+/g', $postContent, $match); //英文
 
