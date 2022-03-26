@@ -53,6 +53,5 @@ if (AB_Read_Time_Menu::get_setting_value('use_shortcode', 'off') == 'on') {
 			return '';
 		}
 	}
+	add_shortcode(AB_Read_Time_Menu::get_setting_value('short_code'), 'ab_post_read_time_func');
 }
-
-add_shortcode(AB_Read_Time_Menu::get_setting_value('short_code'), 'ab_post_read_time_func');

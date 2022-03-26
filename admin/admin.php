@@ -82,7 +82,7 @@ class AB_Read_Time_Menu {
                 ]
             ],
 			'astra_autoload' => [
-                'title' => __( 'Astra them auto load'),
+                'title' => __( 'Astra theme auto load'),
                 'args' => [
                     'type' => 'checkbox',
                     'label' => '',

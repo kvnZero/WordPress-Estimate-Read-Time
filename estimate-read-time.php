@@ -3,7 +3,7 @@
 Plugin Name: Estimate Read Time
 Plugin URI: https://github.com/kvnZero/WordPress-Estimate-Read-Time
 Description: When save post, this plugin will estimate read time and save in post meta
-Version: 1.1
+Version: 1.0
 Author: abigeater
 Author URI: https://abigeater.com
 */

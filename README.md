@@ -1,9 +1,13 @@
-# WordPress-Estimate-Read-Time
+# Estimate-Post-Read-Time
 
-## 配合主题"astra"使用效果最佳
+## Use this plugin with theme "Astra" will be best
 
-在文章保存时计算文字并存入到post meta，后续可直接获取使用。
+== Description ==
 
-建议根据自己需要调整代码，提供了短代码方式获取。
+When save post time estimate read time and save to post meta
 
-具体效果（标题下方）：[博客文章](https://abigeater.com/archives/92)
+You can in setting change setting and rate
+
+You can use short code set to anywhere
+
+Look like my post (use Astra)：[Post Url](https://abigeater.com/archives/92)
