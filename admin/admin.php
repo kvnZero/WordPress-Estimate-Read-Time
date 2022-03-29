@@ -69,44 +69,33 @@ class AB_Read_Time_Menu {
                 'title' => __( 'Support Chinese'),
                 'args' => [
                     'type' => 'checkbox',
-                    'label' => '',
-                    'desc' => '', 
                 ]
             ],
 			'use_shortcode' => [
                 'title' => __( 'Use short code'),
                 'args' => [
                     'type' => 'checkbox',
-                    'label' => '',
-                    'desc' => '', 
                 ]
             ],
 			'astra_autoload' => [
                 'title' => __( 'Astra theme auto load'),
                 'args' => [
                     'type' => 'checkbox',
-                    'label' => '',
-                    'desc' => '', 
                 ]
 			],
             'short_code' => [
                 'title' => __( 'Short code' ),
-                'args' => [
-                    'desc' => '',
-                ]
+                'args' => []
             ],
 			'rate' => [
                 'title' => __( 'Read rate' ),
-                'args' => [
-                    'desc' => '',
-                ]
+                'args' => []
             ],
             'show_text_template' => [
                 'title' => __( 'if you use "Astra" theme, This text will be show post header' ),
                 'args' => [
                     'type' => 'textarea',
                     'rows' => 2,
-                    'desc' => '',
                 ]
             ],
         ];
@@ -173,7 +162,7 @@ class AB_Read_Time_Menu {
 		$name = 'ab_read_time_setting['. $args['id'] . ']';
 
 		echo sprintf('%s<textarea id="%s" name="%s" type="text" class="regular-text" rows="%s">%s</textarea>%s',
-							 $args['before'], $args['id'], $name,$args['rows'] , esc_textarea(self::get_setting_value($args['id'])), $args['after']);
+							 $args['before'], $args['id'], $name, $args['rows'] , esc_textarea(self::get_setting_value($args['id'])), $args['after']);
 	}
 
 	private static function field_checkbox( $args ) {
