@@ -152,7 +152,7 @@ class AB_Read_Time_Menu {
 
 		$name = 'ab_read_time_setting['. $args['id'] . ']';
 		echo sprintf('<input id="%s" name="%s" type="%s" value="%s" />',
-					$args['id'], $name, $args['input_type'], esc_attr(self::get_setting_value($args['id'])));
+					$args['id'], $name, $args['input_type'], self::get_setting_value($args['id']));
 	}
 
 	private static function field_textarea( $args ) {
