@@ -115,8 +115,6 @@ class AB_Read_Time_Menu {
 			'choices' => [],
 			'label' => '',
 			'rows' => '',
-			'before' => '',
-			'after' => '',
 			'desc' => '',
 		];
 		$args = array_merge( $default, $args );
@@ -153,8 +151,8 @@ class AB_Read_Time_Menu {
 	private static function field_input( $args ) {
 
 		$name = 'ab_read_time_setting['. $args['id'] . ']';
-		echo sprintf('%s<input id="%s" name="%s" type="%s" value="%s" />%s',
-							 $args['before'], $args['id'], $name, $args['input_type'], esc_attr(self::get_setting_value($args['id'])), $args['after']);
+		echo sprintf('<input id="%s" name="%s" type="%s" value="%s" />',
+					$args['id'], $name, $args['input_type'], esc_attr(self::get_setting_value($args['id'])));
 	}
 
 	private static function field_textarea( $args ) {
