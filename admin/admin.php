@@ -152,15 +152,15 @@ class AB_Read_Time_Menu {
 
 		$name = 'ab_read_time_setting['. $args['id'] . ']';
 		echo sprintf('<input id="%s" name="%s" type="%s" value="%s" />',
-					$args['id'], $name, $args['input_type'], self::get_setting_value($args['id']));
+					esc_attr($args['id']), esc_attr($name), esc_attr($args['input_type']), esc_attr(self::get_setting_value($args['id'])));
 	}
 
 	private static function field_textarea( $args ) {
 
 		$name = 'ab_read_time_setting['. $args['id'] . ']';
 
-		echo sprintf('%s<textarea id="%s" name="%s" type="text" class="regular-text" rows="%s">%s</textarea>%s',
-							 $args['before'], $args['id'], $name, $args['rows'] , esc_textarea(self::get_setting_value($args['id'])), $args['after']);
+		echo sprintf('<textarea id="%s" name="%s" type="text" class="regular-text" rows="%s">%s</textarea>',
+					esc_attr($args['id']), esc_attr($name), esc_attr($args['rows']), esc_textarea(self::get_setting_value($args['id'])));
 	}
 
 	private static function field_checkbox( $args ) {
@@ -168,7 +168,7 @@ class AB_Read_Time_Menu {
 		$name = 'ab_read_time_setting['. $args['id'] . ']';
 
 		$checked = checked( self::get_setting_value($args['id']), 'on', false );
-		echo sprintf('<input type="hidden" name="%s" value="off">%s<input type="checkbox" id="%s" name="%s" value="on" %s /><label for="%s">%s</label>', 
-								$name, $args['before'], $args['id'], $name, $checked, $args['id'], $args['label']);
+		echo sprintf('<input type="hidden" name="%s" value="off"><input type="checkbox" id="%s" name="%s" value="on" %s /><label for="%s">%s</label>', 
+					esc_attr($name), esc_attr($args['id']), esc_attr($name), $checked, esc_attr($args['id']), esc_attr($args['label']));
 	}
 }
