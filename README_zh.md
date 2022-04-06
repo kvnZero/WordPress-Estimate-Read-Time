@@ -4,7 +4,7 @@
 
 == 插件安装 ==
 
-现在可以直接从WordPress官方插件站下载这个插件使用了, [点这])(https://wordpress.org/plugins/estimate-read-time)
+现在可以直接从WordPress官方插件站下载这个插件使用了, [点这](https://wordpress.org/plugins/estimate-read-time)
 
 == 描述 ==
 

@@ -4,7 +4,7 @@
 
 == Plugin Install ==
 
-You can from wordpress plugin site install this plugin, [click here])(https://wordpress.org/plugins/estimate-read-time)
+You can from wordpress plugin site install this plugin, [click here](https://wordpress.org/plugins/estimate-read-time)
 
 == Description ==
 
