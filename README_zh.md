@@ -2,6 +2,10 @@
 
 ## 配合主题"Astra"使用效果最佳
 
+== 插件安装 ==
+
+现在可以直接从WordPress官方插件站下载这个插件使用了, [点这])(https://wordpress.org/plugins/estimate-read-time)
+
 == 描述 ==
 
 在文章保存时计算文字并存入到post meta，后续可直接获取使用。
