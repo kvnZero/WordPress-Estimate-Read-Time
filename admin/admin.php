@@ -71,18 +71,16 @@ class AB_Read_Time_Menu {
                     'type' => 'checkbox',
                 ]
             ],
-			'use_shortcode' => [
-                'title' => __( 'Use short code'),
-                'args' => [
-                    'type' => 'checkbox',
-                ]
-            ],
 			'astra_autoload' => [
                 'title' => __( 'Astra theme auto load'),
                 'args' => [
                     'type' => 'checkbox',
                 ]
 			],
+            'short_code' => [
+                'title' => __( 'Short code' ),
+                'args' => []
+            ],
 			'rate' => [
                 'title' => __( 'Read rate' ),
                 'args' => []
