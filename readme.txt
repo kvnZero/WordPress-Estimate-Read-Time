@@ -3,8 +3,8 @@ Contributors: abigeater
 Donate link: https://abigeater.com/
 Requires at least: 5.6
 Requires PHP: 7.2
-Tested up to: 6.0
-Stable tag: 1.1
+Tested up to: 6.2
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,3 +28,8 @@ You can use short code set to anywhere
 
 = 1.1 =
 * test up 6.0
+
+= 1.1 =
+* test up 6.2
+* default load shortcode & remove option
+* support Astra theme 4.0

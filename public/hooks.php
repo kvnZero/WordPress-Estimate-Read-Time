@@ -33,6 +33,11 @@ if (wp_get_theme()->get('Name') == 'Astra' && AB_Read_Time_Menu::get_setting_val
 		$value[] = 'ab_post_read_time_text';
 		return $value;
 	});
+
+	add_filter( 'astra_get_option_ast-dynamic-single-post-metadata',function($value){
+		$value[] = 'ab_post_read_time_text';
+		return $value;
+	}); //astra v4.0
 	
 	add_filter( 'astra_meta_case_ab_post_read_time_text',function($output){
 		$text = get_post_meta( get_the_ID(), 'ab_post_read_time_text', true );
@@ -43,15 +48,13 @@ if (wp_get_theme()->get('Name') == 'Astra' && AB_Read_Time_Menu::get_setting_val
 	});
 }
 
-if (AB_Read_Time_Menu::get_setting_value('use_shortcode', 'off') == 'on') {
-	// 如果需要其他地方使用，可以使用WordPress短代码的方式获取阅读时间文本
-	function ab_post_read_time_func($attrs) { 
-		$post_id = $attrs['id'] ?? get_the_ID();
-		if ($post_id) {
-			return get_post_meta($post_id, 'ab_post_read_time_text', true);
-		} else {
-			return '';
-		}
+// 如果需要其他地方使用，可以使用WordPress短代码的方式获取阅读时间文本
+function ab_post_read_time_func($attrs) {
+	$post_id = $attrs['id'] ?? get_the_ID();
+	if ($post_id) {
+		return get_post_meta($post_id, 'ab_post_read_time_text', true);
+	} else {
+		return '';
 	}
-	add_shortcode(AB_Read_Time_Menu::get_setting_value('short_code'), 'ab_post_read_time_func');
 }
+add_shortcode(AB_Read_Time_Menu::get_setting_value('short_code'), 'ab_post_read_time_func');

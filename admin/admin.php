@@ -83,10 +83,6 @@ class AB_Read_Time_Menu {
                     'type' => 'checkbox',
                 ]
 			],
-            'short_code' => [
-                'title' => __( 'Short code' ),
-                'args' => []
-            ],
 			'rate' => [
                 'title' => __( 'Read rate' ),
                 'args' => []
